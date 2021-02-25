@@ -6,13 +6,14 @@ var cake = {
   bakeTime: "45 minutes",
   customer: "Tommy",
   decorate: function(updateFunction) {
-    var status = "Decorating with " + this.topping + ". Ready to eat soon!"
+    var status = "Decorating with " + this.topping + ". Ready to eat soon!";
     updateFunction(status)
     setTimeout(function() {
       updateFunction(serve.apply(this, "Happy Eating!", this.customer))
     }, 2000)
   }
 }
+
 
 var pie = {
   name: "Apple Pie",
@@ -21,7 +22,7 @@ var pie = {
   bakeTemp: "350 degrees",
   bakeTime: "75 minutes",
   customer: "Tammy"
-}
+}/
 
 function makeCake() {
   var updateCakeStatus;
@@ -60,8 +61,11 @@ function cool(updateFunction) {
 }
 
 function makeDessert() {
-  //add code here to decide which make... function to call
-  //based on which link was clicked
+  if(this.parentNode.id === "cake") {
+    makeCake.call(this.parentNode)
+  } else {
+    makePie.call(this.parentNode)
+  }
 }
 
 function serve(message, customer) {
